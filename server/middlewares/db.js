@@ -6,85 +6,63 @@ const db = spicedPg(
 
 //Todo: LastLogin field column, wenn null -> ausgeloggt. jeweils mit serverzeit vergleichen.
 
-const doInit = false;
+const doInit = true;
 
 //todo:  sollten user_id's referenzieren -> keine stray friendships ohne refs
-// if (doInit)
-//     db.query(
-//         `drop table if exists friendships cascade;
-//         CREATE TABLE friendships (
-//     id              SERIAL PRIMARY KEY,
-//     sender_id       VARCHAR(255) NOT NULL CHECK (sender_id != '') CHECK (sender_id != recipient_id),
-//     recipient_id    VARCHAR(255) NOT NULL CHECK (recipient_id != '') CHECK (sender_id != recipient_id),
-//     accepted        BOOLEAN  NOT NULL,
-//     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-// );`
-//     );
+if (doInit)
+    db.query(
+        `drop table if exists friendships cascade;
+        CREATE TABLE friendships (
+    id              SERIAL PRIMARY KEY,
+    sender_id       VARCHAR(255) NOT NULL CHECK (sender_id != '') CHECK (sender_id != recipient_id),
+    recipient_id    VARCHAR(255) NOT NULL CHECK (recipient_id != '') CHECK (sender_id != recipient_id),
+    accepted        BOOLEAN  NOT NULL,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);`
+    );
 
-// if (doInit)
-//     db.query(
-//         `drop table if exists passwordcodes cascade;
-//         CREATE TABLE passwordcodes (
-//     id              SERIAL PRIMARY KEY,
-//     email           VARCHAR(255) NOT NULL,
-//     code             VARCHAR(255) NOT NULL,
-//     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-// );`
-//     );
+if (doInit)
+    db.query(
+        `drop table if exists passwordcodes cascade;
+        CREATE TABLE passwordcodes (
+    id              SERIAL PRIMARY KEY,
+    email           VARCHAR(255) NOT NULL,
+    code             VARCHAR(255) NOT NULL,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);`
+    );
 
-// if (doInit)
-//     db.query(
-//         `drop table if exists users cascade;
-//         CREATE TABLE users (
-//     id              SERIAL PRIMARY KEY,
-//     first           VARCHAR(255) NOT NULL CHECK (first != ''),
-//     last            VARCHAR(255) NOT NULL CHECK (last != ''),
-//     email           VARCHAR(255) NOT NULL UNIQUE,
-//     password        VARCHAR(255) NOT NULL,
-//     image_url       Text,
-//     bio             Text,
-//     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//     real boolean,
-//     bubble text,
-// );`
-//     );
-
-// if (doInit)
-//     db.query(
-//         `drop table if exists signatures cascade;
-//         CREATE TABLE signatures (
-//         id          SERIAL PRIMARY KEY,
-//         user_id     INTEGER NOT NULL UNIQUE REFERENCES users(id),
-//         signature   TEXT NOT NULL CHECK (signature != '')
-// );`
-//     );
-
-// if (doInit)
-//     db.query(
-//         `DROP TABLE IF EXISTS user_profiles CASCADE;
-//         CREATE TABLE user_profiles(
-//         id SERIAL PRIMARY KEY,
-//         age INT,
-//         city VARCHAR(255),
-//         url VARCHAR(255),
-//         user_id INT UNIQUE NOT NULL REFERENCES users(id)
-// );`
-//     );
+if (doInit)
+    db.query(
+        `drop table if exists users cascade;
+        CREATE TABLE users (
+    id              SERIAL PRIMARY KEY,
+    first           VARCHAR(255) NOT NULL CHECK (first != ''),
+    last            VARCHAR(255) NOT NULL CHECK (last != ''),
+    email           VARCHAR(255) NOT NULL UNIQUE,
+    password        VARCHAR(255) NOT NULL,
+    image_url       Text,
+    bio             Text,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    real boolean,
+    bubble text,
+);`
+    );
 
 //  recipient_id    VARCHAR(255), //NOT NULL CHECK (recipient_id != '') CHECK (sender_id != recipient_id),
-// if (doInit)
-//     db.query(
-//         `drop table if exists chatmessages cascade;
-//         CREATE TABLE chatmessages(
-//     id              SERIAL PRIMARY KEY,
-//     sender_id       INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-//     recipient_id    INTEGER REFERENCES users(id) ON DELETE CASCADE,
-//     message        Text NOT NULL,
-//     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-// read BOOLEAN  NOT NULL,
-// notified BOOLEAN  NOT NULL,
-// );`
-//     );
+if (doInit)
+    db.query(
+        `drop table if exists chatmessages cascade;
+        CREATE TABLE chatmessages(
+    id              SERIAL PRIMARY KEY,
+    sender_id       INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    recipient_id    INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    message        Text NOT NULL,
+    created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+read BOOLEAN  NOT NULL,
+notified BOOLEAN  NOT NULL,
+);`
+    );
 
 exports.createFriendsGlobal = () => {
     db.query(`select * from users`).then(({ rows: userRows }) => {
