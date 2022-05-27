@@ -8,5 +8,4 @@ react + plain css/html, redux, toastify
 
 backend:
 node.js/express, PostgreSQL, AWS simple email, Imagestorage in AWS s3 bucket, session-cookie, websockets
-
 <br>This was my first react project, started out using from class components in the beginning for some componnents, then moved to functional components with hooks, then to using redux, redux thunk etc.
