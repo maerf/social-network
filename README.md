@@ -1,4 +1,7 @@
 # social-network
+
+![screenshot direct messages](https://user-images.githubusercontent.com/26009380/172629329-03ab54bb-1f2a-4d18-9778-b5c76e16dc1e.png)
+
 A social network with classic features like a profile, friend requests, real time persistent direct messaging and a group chat. 
 Features in more detail:
 registration/login/password-reset via AWS simple email for verification with generated code, image upload via multer to aws s3 bucket, profile text, friendships, group chat with access to history via more-button, realtime updates via websockets, toast notifications 
