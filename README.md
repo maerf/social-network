@@ -1,6 +1,7 @@
 # social-network
 
-![screenshot direct messages](https://user-images.githubusercontent.com/26009380/172629329-03ab54bb-1f2a-4d18-9778-b5c76e16dc1e.png)
+![screenshot direct messages](https://user-images.githubusercontent.com/26009380/172630025-7af8b41f-60ff-487f-8e92-56a46864274a.png)
+
 
 A social network with classic features like a profile, friend requests, real time persistent direct messaging and a group chat. 
 Features in more detail:
